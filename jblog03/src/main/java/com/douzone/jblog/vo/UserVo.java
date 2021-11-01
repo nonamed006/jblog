@@ -12,8 +12,9 @@ public class UserVo {
 	private String name;
 	@NotEmpty
 	private String password;
-	@NotEmpty
-	private Date date_time;
+	
+	private String join_date;
+	
 	public String getId() {
 		return id;
 	}
@@ -32,11 +33,15 @@ public class UserVo {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Date getDate_time() {
-		return date_time;
+	public String getJoin_date() {
+		return join_date;
 	}
-	public void setDate_time(Date date_time) {
-		this.date_time = date_time;
+	public void setJoin_date(String join_date) {
+		this.join_date = join_date;
+	}
+	@Override
+	public String toString() {
+		return "UserVo [id=" + id + ", name=" + name + ", password=" + password + ", join_date=" + join_date + "]";
 	}
 	
 	

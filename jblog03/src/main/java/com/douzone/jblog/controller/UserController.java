@@ -25,10 +25,20 @@ public class UserController {
 	
 	@RequestMapping(value = "/join", method=RequestMethod.POST)
 	public String join(@Valid UserVo vo) {
-		
+		System.out.println("들어옴");
+		System.out.println(vo);
 		userService.join(vo);
-		return "user/join";
-		
+		return "user/joinsuccess";
+	}
+	
+	@RequestMapping("/joinsuccess")
+	public String joinsuccess() {
+		return "user/joinsuccess";
+	}
+	
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public String login() {
+		return "user/login";
 	}
 }	
 

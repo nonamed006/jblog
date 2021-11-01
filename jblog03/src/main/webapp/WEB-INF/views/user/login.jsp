@@ -19,7 +19,7 @@
 			<li><a href="">로그아웃</a></li>
 			<li><a href="">내블로그</a></li>
 		</ul>
-		<form class="login-form">
+		<form class="login-form" action="${pageContext.request.contextPath}/user/auth">
       		<label>아이디</label> <input type="text" name="id">
       		<label>패스워드</label> <input type="text" name="password">
       		<input type="submit" value="로그인">
