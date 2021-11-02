@@ -1,6 +1,5 @@
 package com.douzone.jblog.vo;
 
-import java.util.Date;
 
 import javax.validation.constraints.NotEmpty;
 

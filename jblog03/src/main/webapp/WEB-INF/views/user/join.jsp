@@ -11,13 +11,7 @@
 </head>
 <body>
 	<div class="center-content">
-		<h1 class="logo" style="background:url(${pageContext.request.contextPath}/assets/images/logo.jpg) 0 0 no-repeat;">JBlog</h1>
-		<ul class="menu">
-			<li><a href="${pageContext.request.contextPath }/user/login">로그인</a></li>
-			<li><a href="${pageContext.request.contextPath }/user/join">회원가입</a></li>
-			<li><a href="">로그아웃</a></li>
-			<li><a href="">내블로그</a></li>
-		</ul>
+		<c:import url="/WEB-INF/views/includes/main-header.jsp" />
 		<form class="join-form" id="join-form" method="post" action="">
 			<label class="block-label" for="name">이름</label>
 			<input id="name"name="name" type="text" value="">
