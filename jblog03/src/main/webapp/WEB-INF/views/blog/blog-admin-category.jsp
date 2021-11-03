@@ -50,37 +50,7 @@ $(function(){
 					<li><a href="">글작성</a></li>
 				</ul>
 				<table class="admin-cat">
-					<tr>
-						<th>번호</th>
-						<th>카테고리명</th>
-						<th>포스트 수</th>
-						<th>설명</th>
-						<th>삭제</th>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>미분류</td>
-						<td>10</td>
-						<td>카테고리를 지정하지 않은 경우</td>
-						<td><img
-							src="${pageContext.request.contextPath}/assets/images/delete.jpg"></td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>스프링 스터디</td>
-						<td>20</td>
-						<td>어쩌구 저쩌구</td>
-						<td><img
-							src="${pageContext.request.contextPath}/assets/images/delete.jpg"></td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>스프링 프로젝트</td>
-						<td>15</td>
-						<td>어쩌구 저쩌구</td>
-						<td><img
-							src="${pageContext.request.contextPath}/assets/images/delete.jpg"></td>
-					</tr>
+					<!-- 여기에 카테고리 리스트, 삭제, 추가  -->
 				</table>
 
 				<h4 class="n-c">새로운 카테고리 추가</h4>

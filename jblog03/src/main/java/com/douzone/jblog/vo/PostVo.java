@@ -37,6 +37,11 @@ public class PostVo {
 	public void setCategory_no(int category_no) {
 		this.category_no = category_no;
 	}
+	@Override
+	public String toString() {
+		return "PostVo [no=" + no + ", title=" + title + ", contents=" + contents + ", reg_date=" + reg_date
+				+ ", category_no=" + category_no + "]";
+	}
 	
 	
 }

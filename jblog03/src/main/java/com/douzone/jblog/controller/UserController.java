@@ -1,4 +1,4 @@
-package com.douzone.jblog.controller;
+ package com.douzone.jblog.controller;
 
 import javax.validation.Valid;
 
