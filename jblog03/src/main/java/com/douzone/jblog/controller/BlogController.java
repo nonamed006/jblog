@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.douzone.jblog.dto.CategoryDto;
+import com.douzone.jblog.security.Auth;
 import com.douzone.jblog.service.BlogService;
 import com.douzone.jblog.service.CategoryService;
 import com.douzone.jblog.vo.CategoryVo;
@@ -32,7 +34,7 @@ public class BlogController {
 		System.out.println(id);
 		
 		List<PostVo> postlist = blogService.list(id);
-		List<CategoryVo> catlist = categoryService.getCategoryList(id);
+		List<CategoryDto> catlist = categoryService.getCategoryList(id);
 		
 		model.addAttribute("postlist", postlist);
 		model.addAttribute("catlist", catlist);
@@ -40,13 +42,19 @@ public class BlogController {
 		return "blog/blog-main";
 	}
 	
-	@RequestMapping(value = "blogAdminBasic", method=RequestMethod.GET)
+	@Auth
+	@RequestMapping(value = "{id}/blogAdminBasic", method=RequestMethod.GET)
 	public String blogAdminBasic() {
+		
 		return "blog/blog-admin-basic";
 	}
 	
-	@RequestMapping(value = "blogAdminCategory", method=RequestMethod.GET)
-	public String blogAdminCategory() {
+	@RequestMapping(value = "{id}/blogAdminCategory", method=RequestMethod.GET)
+	public String blogAdminCategory(@PathVariable("id") String id, Model model) {
+		
+		List<CategoryDto> catlist = categoryService.getCategoryList(id);
+		
+		model.addAttribute("catlist", catlist);
 		return "blog/blog-admin-category";
 	}
 	
@@ -55,17 +63,17 @@ public class BlogController {
 		return "blog/blog-admin-category";
 	}
 	
-	@RequestMapping(value = "write/{id}", method=RequestMethod.GET)
+	@RequestMapping(value = "{id}/write", method=RequestMethod.GET)
 	public String write(@PathVariable("id") String id, Model model) {
 		
-		List<CategoryVo> list = categoryService.getCategoryList(id);
+		List<CategoryDto> list = categoryService.getCategoryList(id);
 		
 		model.addAttribute("list", list);
 		
 		return "blog/blog-admin-write";
 	}
 	
-	@RequestMapping(value = "write/{id}", method=RequestMethod.POST)
+	@RequestMapping(value = "{id}/write", method=RequestMethod.POST)
 	public String write(@PathVariable("id") String id, @Valid PostVo vo) {
 		
 		System.out.println(vo);

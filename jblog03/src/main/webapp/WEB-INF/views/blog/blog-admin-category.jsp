@@ -27,11 +27,26 @@ $(function(){
 				console.log(status, e);
 			},
 			success: function(response) {
+				
 				console.log(response);
+				
+				if(response == "ok"){
+					alert('성공');
+					$('#admintb > tbody:last').append(
+			                 '<td>new</td>'
+			               + '<td>' + $('#name').val() + '</td>'
+			               + '<td>0</td>'
+			               + '<td>' + $('#desc').val() + '</td>'
+			               + '<td><img onclick="delete_category(1);" src="${pageContext.request.contextPath}/assets/images/delete.jpg"></td>');
+					return;
+				}
 				
 			}
 		});		 
+		
 	});
+	
+	
 	
 });
 </script>
@@ -39,18 +54,32 @@ $(function(){
 <body>
 	<div id="container">
 		<div id="header">
-			<h1>Spring 이야기</h1>
 			<c:import url="/WEB-INF/views/includes/blog-header.jsp" />
 		</div>
 		<div id="wrapper">
 			<div id="content" class="full-screen">
 				<ul class="admin-menu">
-					<li><a href="">기본설정</a></li>
+					<li><a href="${pageContext.request.contextPath }/jblog/${authUser.id}/blogAdminBasic">기본설정</a></li>
 					<li class="selected">카테고리</li>
-					<li><a href="">글작성</a></li>
+					<li><a href="${pageContext.request.contextPath }/jblog/${authUser.id}/write">글작성</a></li>
 				</ul>
-				<table class="admin-cat">
-					<!-- 여기에 카테고리 리스트, 삭제, 추가  -->
+				<table class="admin-cat" id="admintb">
+					<tr>
+		      			<th>번호</th>
+		      			<th>카테고리명</th>
+		      			<th>포스트 수</th>
+		      			<th>설명</th>
+		      			<th>삭제</th>      			
+		      		</tr>
+		      		<c:forEach items='${catlist }' var='vo' varStatus='status'>
+						<tr>
+							<td>${status.index+1 }</td>
+							<td>${vo.name }</td>
+							<td>${vo.cnt }</td>
+							<td>${vo.desc }</td>
+							<td><img src="${pageContext.request.contextPath}/assets/images/delete.jpg"></td>
+						</tr>  
+					</c:forEach>
 				</table>
 
 				<h4 class="n-c">새로운 카테고리 추가</h4>

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.douzone.jblog.dto.CategoryDto;
 import com.douzone.jblog.vo.CategoryVo;
 
 @Repository
@@ -18,7 +19,9 @@ public class CategoryRepository {
 		return count == 1;
 	}
 	
-	public List<CategoryVo> findByblogID(String blog_id) {
+	public List<CategoryDto> findByblogID(String blog_id) {
 		return sqlSession.selectList("category.findByblogID", blog_id);
 	}
+	
 }
+

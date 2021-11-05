@@ -17,17 +17,16 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<h1>Spring 이야기</h1>
 			<c:import url="/WEB-INF/views/includes/blog-header.jsp" />
 		</div>
 		<div id="wrapper">
 			<div id="content" class="full-screen">
 				<ul class="admin-menu">
-					<li><a href="">기본설정</a></li>
-					<li><a href="">카테고리</a></li>
+					<li><a href="${pageContext.request.contextPath }/jblog/${authUser.id}/blogAdminBasic">기본설정</a></li>
+					<li><a href="${pageContext.request.contextPath }/jblog/${authUser.id}/blogAdminCategory">카테고리</a></li>
 					<li class="selected">글작성</li>
 				</ul>
-				<form action="${pageContext.request.contextPath }/jblog/write/${authUser.id }" method="post">
+				<form action="${pageContext.request.contextPath }/jblog/${authUser.id}/write" method="post">
 			      	<table class="admin-cat-write">
 			      		<tr>
 			      			<td class="t">제목</td>

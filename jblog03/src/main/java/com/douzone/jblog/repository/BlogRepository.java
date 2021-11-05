@@ -24,4 +24,6 @@ public class BlogRepository {
 		
 		return sqlSession.selectList("post.findAllById", id);
 	}
+	
+	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.douzone.jblog.dto.CategoryDto;
 import com.douzone.jblog.repository.CategoryRepository;
 import com.douzone.jblog.vo.CategoryVo;
 
@@ -18,7 +19,7 @@ public class CategoryService {
 		return categoryRepository.insert(vo);
 	}
 	
-	public List<CategoryVo> getCategoryList(String blog_id) {
+	public List<CategoryDto> getCategoryList(String blog_id) {
 		return categoryRepository.findByblogID(blog_id);
 	}
 }
