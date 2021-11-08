@@ -30,6 +30,13 @@ public class UserController {
 		userService.join(vo);
 		return "user/joinsuccess";
 	}
+	/*
+	  	메소드 어디서 쓰여져 ?
+	  	디스패쳐서블릿
+	  	join(__userVo____)
+	  	달라고 하면 request / userVo의 필드를 찾아서 이름끼리 짝 맞춰서 vo 한개 만들어서 
+	  	넣어줘 
+	 */
 	
 	@RequestMapping("/joinsuccess")
 	public String joinsuccess() {

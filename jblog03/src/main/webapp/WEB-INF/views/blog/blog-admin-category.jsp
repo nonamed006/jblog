@@ -46,8 +46,10 @@ $(function(){
 		
 	});
 	
-	
-	
+	var fubc = function(id){
+		// 여기 삭제하는 ajax delete/id
+	}
+
 });
 </script>
 </head>

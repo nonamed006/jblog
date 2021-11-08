@@ -15,7 +15,7 @@
 
 	<insert id="insert" parameterType="postvo" >
 		<![CDATA[
-		insert into post values(null, #{title }, #{contents }, now(), #{category_no})
+		insert into post values(null, #{title }, #{contents }, now(), #{category_no}, #{user_id})
 		]]>
 	</insert>
 
@@ -33,5 +33,18 @@
 			order by reg_date desc
 		]]>
 	</select> 
+	
+	<select id="findPost" parameterType="map" resultType="postvo">
+		<![CDATA[
+		  select * from post
+			where category_no like #{category_no}
+			and user_id = #{user_id}
+			and no like #{no}
+			order by reg_date 
+			desc limit 1
+		]]>
+	</select>
+	
+	
 
 </mapper>

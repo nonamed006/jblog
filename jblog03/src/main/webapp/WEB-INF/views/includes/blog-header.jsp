@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<h1>Spring 이야기</h1>
+<h1><a href="${pageContext.request.contextPath }/jblog/${authUser.id }/0/0" >${blogvo.title }</a></h1>
 <ul>
 	<c:choose>
 		<c:when test="${empty authUser }">
