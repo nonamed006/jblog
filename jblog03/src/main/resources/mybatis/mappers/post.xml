@@ -25,11 +25,12 @@
 		]]>
 	</delete>
 	-->
-	<select id="findAllById" parameterType="string" resultType="postvo">
+	<select id="findAllById" parameterType="postvo" resultType="postvo">
 		<![CDATA[
 		  select no, title, contents, date_format(reg_date, '%Y/%m/%d') as reg_date, user_id
 		    from post
 		    where user_id = #{user_id}
+		    and category_no like #{category_no} 
 			order by reg_date desc
 		]]>
 	</select> 

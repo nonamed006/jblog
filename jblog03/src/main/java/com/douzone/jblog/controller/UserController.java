@@ -4,10 +4,12 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.douzone.jblog.service.UserService;
+import com.douzone.jblog.vo.BlogVo;
 import com.douzone.jblog.vo.UserVo;
 
 
@@ -23,11 +25,21 @@ public class UserController {
 		return "user/join";
 	}
 	
+	@Transactional //하나 실패하면 알아서 rollback
 	@RequestMapping(value = "/join", method=RequestMethod.POST)
 	public String join(@Valid UserVo vo) {
-		System.out.println("들어옴");
-		System.out.println(vo);
+		System.out.println("회원가입 들어옴");
 		userService.join(vo);
+		
+		BlogVo bvo = new BlogVo();
+		
+		bvo.setId(vo.getId());
+		bvo.setTitle(vo.getId());
+		bvo.setLogo("/upload/images/cookie.jpg");
+		
+		userService.insertblog(bvo);
+		
+		System.out.println("블로그 새로 만들어짐");
 		return "user/joinsuccess";
 	}
 	/*

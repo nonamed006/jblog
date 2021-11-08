@@ -20,8 +20,8 @@ public class BlogService {
 		blogRepository.insert(vo);
 	}
 	
-	public List<PostVo> list(String id) {
-		return blogRepository.findAllById(id);
+	public List<PostVo> list(PostVo vo) {
+		return blogRepository.findAllById(vo);
 	}
 	
 	public PostVo findpost(Map<String, Object> map) {

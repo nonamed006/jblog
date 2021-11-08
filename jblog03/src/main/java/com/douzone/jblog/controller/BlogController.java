@@ -45,7 +45,11 @@ public class BlogController {
 							@PathVariable("no") int no, Model model) {
 		System.out.println(id);
 		
-		List<PostVo> postlist = blogService.list(id);
+		PostVo vo = new PostVo();
+		vo.setUser_id(id);
+		vo.setCategory_no(cat);
+		
+		List<PostVo> postlist = blogService.list(vo);
 		List<CategoryDto> catlist = categoryService.getCategoryList(id);
 		BlogVo blogvo = blogService.findById(id);
 
@@ -55,6 +59,7 @@ public class BlogController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("category_no", cat == 0 ? "%" : cat);
 		map.put("user_id", id);
+		
 		map.put("no", no == 0 ? "%" : no);
 		
 		

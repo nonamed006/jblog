@@ -22,9 +22,9 @@ public class BlogRepository {
 		return count == 1;
 	}
 	
-	public List<PostVo> findAllById(String id) {
+	public List<PostVo> findAllById(PostVo vo) {
 		
-		return sqlSession.selectList("post.findAllById", id);
+		return sqlSession.selectList("post.findAllById", vo);
 	}
 	
 	//블로그 메인 글 올려주는 함수

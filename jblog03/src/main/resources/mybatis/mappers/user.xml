@@ -16,6 +16,13 @@
 		values (#{id}, #{name }, #{password }, now())
 		]]>
 	</insert>
+	<insert id="insertBlog" parameterType="blogvo">
+		<![CDATA[
+		insert
+		  into blog 
+		values (#{id}, #{title }, #{logo })
+		]]>
+	</insert>
 
 	<select id="findByIdAndPassword" parameterType="map" resultType="uservo">
 		<![CDATA[

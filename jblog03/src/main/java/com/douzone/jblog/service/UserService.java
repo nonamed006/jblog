@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.douzone.jblog.repository.UserRepository;
+import com.douzone.jblog.vo.BlogVo;
 import com.douzone.jblog.vo.UserVo;
 
 
@@ -14,6 +15,10 @@ public class UserService {
 
 	public void join(UserVo vo) {
 		userRepository.insert(vo);
+	}
+	
+	public void insertblog(BlogVo vo) {
+		userRepository.insertBlog(vo);
 	}
 	
 	public UserVo getUser(String id, String password) {

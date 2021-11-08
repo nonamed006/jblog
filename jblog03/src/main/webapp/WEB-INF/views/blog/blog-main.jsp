@@ -30,11 +30,11 @@
 					
 				</ul>
 			</div> 
-		</div>
+		</div> 
 
 		<div id="extra">
 			<div class="blog-logo">
-				<img src="${pageContext.request.contextPath}/upload/images/202110753152575.jpg">
+				<img src="${pageContext.request.contextPath}${blogvo.logo}">
 			</div>
 		</div>
 
@@ -42,7 +42,7 @@
 			<h2>카테고리</h2>
 			<ul>
 			<c:forEach items='${catlist }' var='vo' varStatus='status'>
-				<li><a href="">${vo.name }</a></li>
+				<li><a href="${pageContext.request.contextPath}/jblog/${catlist[0].blog_id}/${vo.no}/${no}">${vo.name }</a></li>
 			</c:forEach>
 				
 			</ul>
