@@ -21,4 +21,9 @@
 		order by a.no asc
 		]]>
 	</select>
+	<delete id="deleteByNo" parameterType="int">
+		<![CDATA[
+			delete from category where no = #{no}
+		]]>
+	</delete>
 </mapper>

@@ -8,6 +8,32 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>JBlog</title>
 <Link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
+<script src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.9.0.js"></script>
+<script>
+$(function(){
+	$('#btn-checkemail').click(function(){
+		
+		
+		$.ajax({
+			url: "${pageContext.request.contextPath }/jblogapi/checkid/" + $('#blog-id').val(),
+			type: "get",
+
+			success: function(response) {
+				console.log($('#blog-id').val());
+				
+				if(response == "fail"){
+					alert("존재하는 ID입니다.")
+					$("#blog-id").val("").focus();
+					return;
+				}
+				
+				$("#btn-checkemail").hide();
+				$("#img-checkemail").show();
+			}
+		});
+	});
+});
+</script>
 </head>
 <body>
 	<div class="center-content">
@@ -29,10 +55,9 @@
 				<input id="agree-prov" type="checkbox" name="agreeProv" value="y">
 				<label class="l-float">서비스 약관에 동의합니다.</label>
 			</fieldset>
-
 			<input type="submit" value="가입하기">
-
 		</form>
 	</div>
 </body>
 </html>
+

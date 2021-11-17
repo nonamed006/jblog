@@ -20,8 +20,8 @@ public class BlogService {
 		blogRepository.insert(vo);
 	}
 	
-	public List<PostVo> list(PostVo vo) {
-		return blogRepository.findAllById(vo);
+	public List<PostVo> list(Map<String, Object> map) {
+		return blogRepository.findAllById(map);
 	}
 	
 	public PostVo findpost(Map<String, Object> map) {
@@ -31,7 +31,10 @@ public class BlogService {
 		
 		return blogRepository.update(vo); 
 	}
-	
+	public boolean updatetitle(BlogVo vo) {
+		
+		return blogRepository.updatetitle(vo); 
+	}
 	public BlogVo findById(String id) {
 		return blogRepository.findById(id);
 	}

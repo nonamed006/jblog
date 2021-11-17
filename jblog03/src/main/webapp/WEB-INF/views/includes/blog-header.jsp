@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<h1><a href="${pageContext.request.contextPath }/jblog/${authUser.id }/0/0" >${blogvo.title }</a></h1>
+<a href="${pageContext.request.contextPath }/jblog/${authUser.id }/0/0" ><h1>${blogvo.title }</h1></a>
 <ul>
 	<c:choose>
 		<c:when test="${empty authUser }">

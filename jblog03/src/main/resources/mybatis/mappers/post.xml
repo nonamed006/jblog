@@ -25,7 +25,7 @@
 		]]>
 	</delete>
 	-->
-	<select id="findAllById" parameterType="postvo" resultType="postvo">
+	<select id="findAllById" parameterType="map" resultType="postvo">
 		<![CDATA[
 		  select no, title, contents, date_format(reg_date, '%Y/%m/%d') as reg_date, user_id
 		    from post
@@ -45,6 +45,11 @@
 			desc limit 1
 		]]>
 	</select>
+	<delete id="deletepost" parameterType="int">
+		<![CDATA[
+			delete from post where category_no = #{category_no}
+		]]>
+	</delete>
 	
 	
 

@@ -22,9 +22,9 @@ public class BlogRepository {
 		return count == 1;
 	}
 	
-	public List<PostVo> findAllById(PostVo vo) {
+	public List<PostVo> findAllById(Map<String, Object> map) {
 		
-		return sqlSession.selectList("post.findAllById", vo);
+		return sqlSession.selectList("post.findAllById", map);
 	}
 	
 	//블로그 메인 글 올려주는 함수
@@ -37,10 +37,20 @@ public class BlogRepository {
 		int count = sqlSession.update("blog.updateProfile", vo);
 		return count == 1;
 	}
+	//제목만 바꾸기
+	public boolean updatetitle(BlogVo vo) {
+		int count = sqlSession.update("blog.updatetitle", vo);
+		return count == 1;
+	}
 	
 	public BlogVo findById(String id){
 		return sqlSession.selectOne("blog.findById", id);
 	}
 	
+	//포스트 삭제
+	public boolean delpost(int no) {
+		int count = sqlSession.delete("post.deletepost", no);
+		return count == 1;
+	}
 	
 }

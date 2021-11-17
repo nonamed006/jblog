@@ -24,4 +24,9 @@ public class UserService {
 	public UserVo getUser(String id, String password) {
 		return userRepository.findByIdAndPassword(id, password);
 	}
+	
+	//중복체크
+	public int findById(String id) {
+		return userRepository.findById(id);
+	}
 }

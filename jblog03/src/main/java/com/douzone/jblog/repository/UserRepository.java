@@ -35,4 +35,11 @@ public class UserRepository {
 		
 		return sqlSession.selectOne("user.findByIdAndPassword", map);
 	}
+	
+	//중복체크
+	public int findById(String id) {
+		return sqlSession.selectOne("user.findById", id);
+	}
+	
+	
 }

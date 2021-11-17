@@ -25,9 +25,8 @@
 				</div>
 				<ul class="blog-list">
 				<c:forEach items='${postlist }' var='vo' varStatus='status'>
-					<li><a href="${pageContext.request.contextPath}/jblog/${postlist[0].user_id}/${cat}/${vo.no}">${vo.title } </a> <span>${vo.reg_date }</span>	</li>
+					<li><a href="${pageContext.request.contextPath}/jblog/${postlist[0].user_id}/${cat}/${vo.no}">${vo.title } </a> <span>${vo.reg_date }</span></li>
 				</c:forEach>
-					
 				</ul>
 			</div> 
 		</div> 
@@ -44,7 +43,6 @@
 			<c:forEach items='${catlist }' var='vo' varStatus='status'>
 				<li><a href="${pageContext.request.contextPath}/jblog/${catlist[0].blog_id}/${vo.no}/${no}">${vo.name }</a></li>
 			</c:forEach>
-				
 			</ul>
 		</div>
 		

@@ -23,5 +23,10 @@ public class CategoryRepository {
 		return sqlSession.selectList("category.findByblogID", blog_id);
 	}
 	
+	public boolean delete(int no) {
+		int count = sqlSession.delete("category.deleteByNo", no);
+		return count == 1;
+	}
+	
 }
 

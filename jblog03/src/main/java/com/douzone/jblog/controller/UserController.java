@@ -8,8 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.douzone.jblog.service.CategoryService;
 import com.douzone.jblog.service.UserService;
 import com.douzone.jblog.vo.BlogVo;
+import com.douzone.jblog.vo.CategoryVo;
 import com.douzone.jblog.vo.UserVo;
 
 
@@ -19,25 +21,49 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private CategoryService categoryService;
+	//@Autowired
+	//private BlogService blogService;
+	
 	
 	@RequestMapping(value = "/join", method=RequestMethod.GET)
 	public String join() {
 		return "user/join";
 	}
 	
-	@Transactional //하나 실패하면 알아서 rollback
+	@Transactional(rollbackFor = Exception.class) //하나 실패하면 알아서 rollback
 	@RequestMapping(value = "/join", method=RequestMethod.POST)
 	public String join(@Valid UserVo vo) {
 		System.out.println("회원가입 들어옴");
 		userService.join(vo);
-		
+
 		BlogVo bvo = new BlogVo();
+		CategoryVo cvo = new CategoryVo();
+		//PostVo pvo = new PostVo();
 		
+		// 회원가입시 블로그 생성해주기
 		bvo.setId(vo.getId());
 		bvo.setTitle(vo.getId());
 		bvo.setLogo("/upload/images/cookie.jpg");
 		
+		// 블로그 새로 생성시 기본 카테고리 생성해주기
+		cvo.setName("전체보기");
+		cvo.setDesc("기본 카테고리");
+		cvo.setBlog_id(vo.getId());
+		
 		userService.insertblog(bvo);
+		categoryService.addcat(cvo);
+		
+		/*
+		// 블로그 새로 생성시 블로그에 기본 게시글 생성해주기
+		pvo.setTitle("블로그 생성을 축하드립니다.");
+		pvo.setContents("블로그 생성을 축하드립니다.");
+		pvo.setCategory_no(cvo.getNo());
+		pvo.setUser_id(vo.getId());
+		
+		blogService.write(pvo);
+		*/
 		
 		System.out.println("블로그 새로 만들어짐");
 		return "user/joinsuccess";

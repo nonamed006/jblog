@@ -49,18 +49,18 @@ public class BlogController {
 		vo.setUser_id(id);
 		vo.setCategory_no(cat);
 		
-		List<PostVo> postlist = blogService.list(vo);
-		List<CategoryDto> catlist = categoryService.getCategoryList(id);
-		BlogVo blogvo = blogService.findById(id);
-
 		// key:value 한 쌍씩 된 거 
 		// K key의 타입 / V value의 타입
 		// category_no : 1 or "%"
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("category_no", cat == 0 ? "%" : cat);
 		map.put("user_id", id);
-		
 		map.put("no", no == 0 ? "%" : no);
+		
+		List<PostVo> postlist = blogService.list(map);
+		List<CategoryDto> catlist = categoryService.getCategoryList(id);
+		BlogVo blogvo = blogService.findById(id);
+
 		
 		
 		PostVo mainpost = blogService.findpost(map);
@@ -79,15 +79,22 @@ public class BlogController {
 	
 	@Auth
 	@RequestMapping(value = "{id}/blogAdminBasic", method=RequestMethod.GET)
-	public String blogAdminBasic() {
+	public String blogAdminBasic(@PathVariable("id") String id, Model model) {
+		
+		BlogVo blogvo = blogService.findById(id);
+		model.addAttribute("blogvo", blogvo);
 		
 		return "blog/blog-admin-basic";
 	}
 	
+	@Auth
 	@RequestMapping(value = "{id}/blogAdminCategory", method=RequestMethod.GET)
 	public String blogAdminCategory(@PathVariable("id") String id, Model model) {
 		
 		List<CategoryDto> catlist = categoryService.getCategoryList(id);
+		
+		BlogVo blogvo = blogService.findById(id);
+		model.addAttribute("blogvo", blogvo);
 		
 		model.addAttribute("catlist", catlist);
 		return "blog/blog-admin-category";
@@ -98,39 +105,43 @@ public class BlogController {
 		return "blog/blog-admin-category";
 	}
 	
+	@Auth
 	@RequestMapping(value = "{id}/write", method=RequestMethod.GET)
 	public String write(@PathVariable("id") String id, Model model) {
 		
 		List<CategoryDto> list = categoryService.getCategoryList(id);
+		
+		BlogVo blogvo = blogService.findById(id);
+		model.addAttribute("blogvo", blogvo);
 		
 		model.addAttribute("list", list);
 		
 		return "blog/blog-admin-write";
 	}
 	
+	@Auth
 	@RequestMapping(value = "{id}/write", method=RequestMethod.POST)
 	public String write(@PathVariable("id") String id, @Valid PostVo vo) {
 		
-		System.out.println(vo);
 		vo.setUser_id(id);
 		blogService.write(vo);
 		return "redirect:/jblog/"+id+"/write";
 	}
 	
+	@Auth
 	@RequestMapping(value = "{id}/blogAdminBasic", method=RequestMethod.POST)
 	public String blogAdminBasicfileupload(@RequestPart(value="logo-file",required = false)  MultipartFile file, @PathVariable("id") String blogId, BlogVo blogVo) {
-		// () 에 뭘 넣어놓으면 디스패쳐는 쟤들을 request에서 이름 같은 애를 찾아서 넣어줘
-		// ~~~~(title);
-		System.out.println("블로그 업데이트 들어옴");
 		
-		String url = fileUploadService.restoreImage(file);
-		blogVo.setLogo(url);
+		String url =null;
 		blogVo.setId(blogId);
 		
-		System.out.println("===");
-		System.out.println(blogVo);
-		System.out.println("===");
+		if(!file.isEmpty()) {
+			url = fileUploadService.restoreImage(file);
+		} else {
+			blogService.updatetitle(blogVo);
+		}
 		
+		blogVo.setLogo(url);
 		blogService.update(blogVo);
 		
 		return "blog/blog-admin-basic";
@@ -138,11 +149,4 @@ public class BlogController {
 
 }
 
-/*
-	저장하기 누르면 - dispatcherServlet => title, category, contents 
-	url에 해당하는 controller의 함수 실행 
-	write(@PathVariable("id") String id, @Valid PostVo vo)
-	url : write/{id} // id 넣어줘
-	PostVo를 넣어달래 // setter들의 이름에 맞는 변수가 있으면 다 넣어줘 // setTitle, setCategory
-	PostVo를 완성해서 넣어줘 
-*/
+

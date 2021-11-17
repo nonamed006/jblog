@@ -33,20 +33,13 @@
 		]]>
 	</select>
 
-	<select id="findByNo" parameterType="long" resultType="uservo">
+	<select id="findById" parameterType="string" resultType="int">
 		<![CDATA[
-		select no, name, email, gender 
+		select count(*)
 		  from user
-		 where no=#{no }
+		 where id=#{id }
 		]]>
 	</select>
 
-	<select id="findByEmail" parameterType="string" resultType="uservo">
-		<![CDATA[
-		select no, name, email, gender 
-		  from user
-		 where email=#{email }
-		]]>
-	</select>
 	
 </mapper>

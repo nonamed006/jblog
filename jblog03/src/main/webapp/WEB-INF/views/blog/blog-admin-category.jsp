@@ -18,7 +18,7 @@ $(function(){
 
 		console.log($('name').val());
 		$.ajax({
-			url: "${pageContext.request.contextPath }/jblogapi/addcat",
+			url: "${pageContext.request.contextPath }/jblogapi/addcat/${authUser.id}",
 			type: "post",
 			dataType: "json",
 			contentType: "application/json",
@@ -39,6 +39,7 @@ $(function(){
 			               + '<td>' + $('#desc').val() + '</td>'
 			               + '<td><img onclick="delete_category(1);" src="${pageContext.request.contextPath}/assets/images/delete.jpg"></td>');
 					return;
+					// 삭제 버튼 td 수정하기
 				}
 				
 			}
@@ -46,9 +47,25 @@ $(function(){
 		
 	});
 	
-	var fubc = function(id){
-		// 여기 삭제하는 ajax delete/id
-	}
+	//삭제
+	$(".delCategory").click(function(){
+		var target = this;
+		console.log(this.id);
+		$.ajax({
+			url:  "${pageContext.request.contextPath }/jblogapi/delcat/"+ this.id,
+			type: "get",
+			
+			success: function(response) {
+				
+				console.log(response);
+				
+				if(response == "ok"){
+					alert('성공');
+					$(target).parent().parent().remove();
+				}
+			}
+		});
+	})
 
 });
 </script>
@@ -79,7 +96,7 @@ $(function(){
 							<td>${vo.name }</td>
 							<td>${vo.cnt }</td>
 							<td>${vo.desc }</td>
-							<td><img src="${pageContext.request.contextPath}/assets/images/delete.jpg"></td>
+							<td><img src="${pageContext.request.contextPath}/assets/images/delete.jpg" class = "delCategory" id = ${vo.no }></td>
 						</tr>  
 					</c:forEach>
 				</table>

@@ -6,6 +6,11 @@
 			update blog set title = #{title}, logo=#{logo} where id = #{id}
 		]]>
 	</update>
+	<update id="updatetitle" parameterType="blogvo">
+		<![CDATA[
+			update blog set title = #{title} where id = #{id}
+		]]>
+	</update>
 	<select id="findById" resultType="blogvo" parameterType="string">
 		<![CDATA[
 			select id, title, logo from blog where id = #{id}
