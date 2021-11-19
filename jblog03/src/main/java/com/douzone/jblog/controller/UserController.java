@@ -86,12 +86,3 @@ public class UserController {
 		return "user/login";
 	}
 }	
-
-/*
-1. 주소에 달아서 보낸다
-192~~~?a=asd
-
-2. request body에 담아서 보내는 게 있지
-
-
-*/

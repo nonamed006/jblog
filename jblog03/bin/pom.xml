@@ -126,7 +126,7 @@
 		</dependency>
 
 		<!-- logback(slf4j) -->
- 		<dependency>
+ 		 <dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>${jcloverslf4j.version}</version>
@@ -135,7 +135,7 @@
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>${logback.version}</version>
-		</dependency> 
+		</dependency>  
 						
 		<!-- Servlet -->
 		<dependency>
